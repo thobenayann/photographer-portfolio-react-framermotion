@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // images
 import Image1 from '../img/portfolio/1.png';
 import Image2 from '../img/portfolio/2.png';
@@ -10,8 +10,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 // transition
 import { transition1 } from '../transitions';
+// cursor context
+import { CursorContext } from '../context/CursorContext';
 
 const Portfolio = () => {
+    const { mouseEnterHandler, mouseLeaverHandler } = useContext(CursorContext);
     return (
         <motion.section
             initial={{ opacity: 0, y: '100%' }}
@@ -28,6 +31,8 @@ const Portfolio = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '-80%' }}
                         transition={transition1}
+                        onMouseEnter={mouseEnterHandler}
+                        onMouseLeave={mouseLeaverHandler}
                         className='flex flex-col lg:items-start'
                     >
                         <h1 className='h1'>Portfolio</h1>
@@ -48,7 +53,11 @@ const Portfolio = () => {
                         </Link>
                     </motion.div>
                     {/* image grid */}
-                    <div className='grid grid-cols-2 lg:gap-2'>
+                    <div
+                        className='grid grid-cols-2 lg:gap-2'
+                        onMouseEnter={mouseEnterHandler}
+                        onMouseLeave={mouseLeaverHandler}
+                    >
                         {/* image */}
                         <div className='max-w-[250px] lg:max-w-[320px] h-[187px] lg:h-[220px] bg-accent overflow-hidden'>
                             <img

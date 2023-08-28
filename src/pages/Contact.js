@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // images
 import WomanImg from '../img/contact/woman.png';
 // framer motion
 import { motion } from 'framer-motion';
 // transition
 import { transition1 } from '../transitions';
+// cursor context
+import { CursorContext } from '../context/CursorContext';
 
 const Contact = () => {
+    const { mouseEnterHandler, mouseLeaverHandler } = useContext(CursorContext);
     return (
         <motion.section
             initial={{ opacity: 0, y: '100%' }}
@@ -26,7 +29,11 @@ const Contact = () => {
                         className='hidden lg:flex bg-[#eef7f9] absolute bottom-0 left-0 right-0 top-72 -z-10'
                     />
                     {/* text & from */}
-                    <div className='lg:flex-1 lg:pt-32 px-4'>
+                    <div
+                        className='lg:flex-1 lg:pt-32 px-4'
+                        onMouseEnter={mouseEnterHandler}
+                        onMouseLeave={mouseLeaverHandler}
+                    >
                         <h1 className='h1'>Contact me</h1>
                         <p className='mb-12'>
                             I would love to get suggestions from you.
@@ -61,6 +68,8 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '100%' }}
                         transition={{ transition1, duration: 1.5 }}
+                        onMouseEnter={mouseEnterHandler}
+                        onMouseLeave={mouseLeaverHandler}
                         className='lg:flex-1'
                     >
                         <img src={WomanImg} alt='woman' />

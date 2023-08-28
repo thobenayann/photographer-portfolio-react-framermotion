@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // images
 import WomanImg from '../img/home/woman.png';
 // Link
@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 // transition
 import { transition1 } from '../transitions';
+// cursor context
+import { CursorContext } from '../context/CursorContext';
 
 const Home = () => {
+    const { mouseEnterHandler, mouseLeaverHandler } = useContext(CursorContext);
     return (
         <motion.section
             initial={{ opacity: 0 }}
@@ -20,11 +23,14 @@ const Home = () => {
             <div className='container mx-auto h-full relative'>
                 {/* text & img wrapper */}
                 <div className='flex flex-col justify-center'>
+                    {/* text */}
                     <motion.div
                         initial={{ opacity: 0, y: '-50%' }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: '-50%' }}
                         transition={transition1}
+                        onMouseEnter={mouseEnterHandler}
+                        onMouseLeave={mouseLeaverHandler}
                         className='w-full pt-36 pb-14 lg:pt-0 lg:pb-0 lg:w-auto z-10 lg:absolute flex flex-col justify-center items-center lg:items-start'
                     >
                         <h1 className='h1'>
